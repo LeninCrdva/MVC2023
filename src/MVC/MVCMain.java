@@ -2,7 +2,6 @@ package MVC;
 
 import Controlador.ControladorPrincipal;
 import Vista.VistaPrincipal;
-
 /**
  *
  * @author Lenin
