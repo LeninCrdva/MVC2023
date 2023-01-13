@@ -47,7 +47,6 @@ public class ModeloPersona extends Persona {
         List<Persona> lista = new ArrayList<>();
         String sql = "SELECT idpersona, nombres, telefono, fechanacimiento, sexo, sueldo, cupo FROM \"Persona\" WHERE idpersona like '%" + getIdpersona() +"%'";
         
-        System.out.println(sql);
         ConectPG conpq = new ConectPG();
         ResultSet rs = conpq.Consulta(sql);
         try {

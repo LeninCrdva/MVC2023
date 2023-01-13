@@ -7,9 +7,13 @@ package Controlador;
 import Modelo.ModeloPersona;
 import Modelo.Persona;
 import Vista.VistaPersonas;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -57,19 +61,27 @@ public class ControlPersona {
 
     private void abrirDialogo(int ce) {
         String title;
+        boolean openwindow = false;
         if (ce == 1) {
             title = "Crear Persona";
             vista.getDlgCreate().setName("crear");
+            openwindow = true;
         } else {
             title = "Editar Persona";
             vista.getDlgCreate().setName("editar");
-            uploadDates(vista.getTablePerson());
+            try {
+                openwindow = uploadDates(vista.getTablePerson());
+            } catch (ParseException ex) {
+                Logger.getLogger(ControlPersona.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-
-        vista.getDlgCreate().setLocationRelativeTo(null);
-        vista.getDlgCreate().setSize(530, 400);
-        vista.getDlgCreate().setTitle(title);
-        vista.getDlgCreate().setVisible(true);
+        
+        if(openwindow){
+            vista.getDlgCreate().setLocationRelativeTo(null);
+            vista.getDlgCreate().setSize(530, 400);
+            vista.getDlgCreate().setTitle(title);
+            vista.getDlgCreate().setVisible(true);
+        }
     }
 
     private void crearEditarPersona() {
@@ -156,11 +168,14 @@ public class ControlPersona {
         });
     }
     
-    private void uploadDates(JTable table) {
+    private boolean uploadDates(JTable table) throws ParseException {
+        boolean a = false;
         if (table.getSelectedRowCount() == 1) {
+            a = true;
             vista.getTxtCed().setText((String.valueOf(vista.getTablePerson().getValueAt(vista.getTablePerson().getSelectedRow(), 0))));
             vista.getTxtName().setText(String.valueOf(vista.getTablePerson().getValueAt(vista.getTablePerson().getSelectedRow(), 1)));
-            vista.getDateNac().setDateFormatString(String.valueOf(vista.getTablePerson().getValueAt(vista.getTablePerson().getSelectedRow(), 2)));
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            vista.getDateNac().setDate(formato.parse(vista.getTablePerson().getValueAt(vista.getTablePerson().getSelectedRow(), 2).toString()));
             vista.getTxtTelf().setText(String.valueOf(vista.getTablePerson().getValueAt(vista.getTablePerson().getSelectedRow(), 3)));
             vista.getTxtSex().setText(String.valueOf(vista.getTablePerson().getValueAt(vista.getTablePerson().getSelectedRow(), 4)));
             vista.getTxtSalary().setText(String.valueOf(vista.getTablePerson().getValueAt(vista.getTablePerson().getSelectedRow(), 5)));
@@ -168,5 +183,6 @@ public class ControlPersona {
         }else{
             JOptionPane.showMessageDialog(null, "SELECCIONE UNA FILA DE LA TABLA");
         }
+        return a;
     }
 }
