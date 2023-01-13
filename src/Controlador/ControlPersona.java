@@ -43,6 +43,9 @@ public class ControlPersona {
         vista.getButtonAgree().addActionListener(l -> crearEditarPersona());
         vista.getBtnEliminar().addActionListener(l -> eliminarPersona(vista.getTablePerson()));
         vista.getTxtBuscar().addActionListener(l -> buscarPersona());
+        vista.getDateNac().setDateFormatString("yyyy-MM-dd");
+        vista.getDateNac().setEnabled(false);
+        vista.getDateNac().getCalendarButton().setEnabled(true);
     }
 
     private void cargaPersonas() {
