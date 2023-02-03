@@ -67,6 +67,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
     public void setBtnVentas(JButton btnVentas) {
         this.btnVentas = btnVentas;
     }
+
+    public JButton getBtnProducto() {
+        return btnProducto;
+    }
+
+    public void setBtnProducto(JButton btnProducto) {
+        this.btnProducto = btnProducto;
+    }
     
     
     
@@ -83,6 +91,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jToolBar1 = new javax.swing.JToolBar();
         btnPersonas = new javax.swing.JButton();
         btnVentas = new javax.swing.JButton();
+        btnProducto = new javax.swing.JButton();
         dptPrincipal = new javax.swing.JDesktopPane();
         JMenuBar = new javax.swing.JMenuBar();
         mnuCrudPersonas = new javax.swing.JMenu();
@@ -109,6 +118,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
         btnVentas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnVentas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btnVentas);
+
+        btnProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/estrella.png"))); // NOI18N
+        btnProducto.setToolTipText("CrudProducto");
+        btnProducto.setFocusable(false);
+        btnProducto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnProducto.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnProducto);
 
         javax.swing.GroupLayout dptPrincipalLayout = new javax.swing.GroupLayout(dptPrincipal);
         dptPrincipal.setLayout(dptPrincipalLayout);
@@ -169,6 +185,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar JMenuBar;
     private javax.swing.JButton btnPersonas;
+    private javax.swing.JButton btnProducto;
     private javax.swing.JButton btnVentas;
     private javax.swing.JDesktopPane dptPrincipal;
     private javax.swing.JLabel jLabel1;

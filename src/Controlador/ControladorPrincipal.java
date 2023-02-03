@@ -1,8 +1,10 @@
 package Controlador;
 
 import Modelo.ModeloPersona;
+import Modelo.ModeloProducto;
 import Vista.VistaPersonas;
 import Vista.VistaPrincipal;
+import Vista.VistaProducto;
 import Vista.VistaPuntoDeVenta;
 
 /**
@@ -22,6 +24,7 @@ public class ControladorPrincipal {
         vistaPrincipal.getMnuCrudPersonas().addActionListener(l->crudPersonas());
         vistaPrincipal.getBtnPersonas().addActionListener(l->crudPersonas());
         vistaPrincipal.getBtnVentas().addActionListener(l->crudVentas());
+        vistaPrincipal.getBtnProducto().addActionListener(l -> crudProductos());
     }
     
     private void crudPersonas(){
@@ -38,5 +41,15 @@ public class ControladorPrincipal {
         VistaPuntoDeVenta vista = new VistaPuntoDeVenta();
         ControlVentas control = new ControlVentas(vista);
         vistaPrincipal.getDptPrincipal().add(vista);
+    }
+    
+    private void crudProductos(){
+        ModeloProducto producto = new ModeloProducto();
+        VistaProducto vista = new VistaProducto();
+        
+        vistaPrincipal.getDptPrincipal().add(vista);
+        
+        ControlProducto control = new ControlProducto(producto, vista);
+        control.iniciaControl();
     }
 }
